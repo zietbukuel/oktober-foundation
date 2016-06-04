@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TaskOptions>
+  <TaskOptions>
+    <option name="arguments" value="styles --src=$/FileRelativePath$" />
+    <option name="checkSyntaxErrors" value="true" />
+    <option name="description" value="Transpiles and autoprefixes SCSS to CSS with Gulp" />
+    <option name="exitCodeBehavior" value="ERROR" />
+    <option name="fileExtension" value="scss" />
+    <option name="immediateSync" value="false" />
+    <option name="name" value="StylCSS" />
+    <option name="output" value="$ProjectFileDir$\assets\css" />
+    <option name="outputFilters">
+      <array />
+    </option>
+    <option name="outputFromStdout" value="false" />
+    <option name="program" value="gulp.cmd" />
+    <option name="scopeName" value="Applevel SCS" />
+    <option name="trackOnlyRoot" value="true" />
+    <option name="workingDir" value="$ProjectFileDir$" />
+    <envs />
+  </TaskOptions>
+  <TaskOptions>
+    <option name="arguments" value="scripts --src=$/FileRelativePath$" />
+    <option name="checkSyntaxErrors" value="true" />
+    <option name="description" value="Transpiles ECMAscript6 to JavaScript with Gulp" />
+    <option name="exitCodeBehavior" value="ERROR" />
+    <option name="fileExtension" value="js" />
+    <option name="immediateSync" value="false" />
+    <option name="name" value="ScriptJS" />
+    <option name="output" value="$ProjectFileDir$\assets\js" />
+    <option name="outputFilters">
+      <array />
+    </option>
+    <option name="outputFromStdout" value="false" />
+    <option name="program" value="gulp.cmd" />
+    <option name="scopeName" value="Applevel ES6" />
+    <option name="trackOnlyRoot" value="false" />
+    <option name="workingDir" value="$ProjectFileDir$" />
+    <envs />
+  </TaskOptions>
+</TaskOptions>
+
