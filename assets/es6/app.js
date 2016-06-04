@@ -1,10 +1,10 @@
 //= require ../vendor/jquery/dist/jquery.js
 //= require ../vendor/what-input/what-input.js
 //= require ../vendor/motion-ui/motion-ui.js
+//= require ../vendor/foundation-sites/js/foundation.core.js
 //= require ../vendor/foundation-sites/js/foundation.abide.js
 //= require ../vendor/foundation-sites/js/foundation.accordion.js
 //= require ../vendor/foundation-sites/js/foundation.accordionMenu.js
-//= require ../vendor/foundation-sites/js/foundation.core.js
 //= require ../vendor/foundation-sites/js/foundation.drilldown.js
 //= require ../vendor/foundation-sites/js/foundation.dropdown.js
 //= require ../vendor/foundation-sites/js/foundation.dropdownMenu.js
