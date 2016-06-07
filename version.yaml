@@ -1,6 +1,8 @@
+1.0.2:
+    - Fixed gulp watch.
 1.0.1:
     - Fixed the order foundation.core.js should be in app.js.
     - Fixed the font-awesome path.
 1.0.0:
     - Initial Oktober Foundation theme with Gulp-built frontend resources.
-    - based on Zurb Foundation 6.2.3
+    - Based on Zurb Foundation 6.2.3

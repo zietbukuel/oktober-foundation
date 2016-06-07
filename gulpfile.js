@@ -73,6 +73,6 @@ var include = require('gulp-include'), // extend Javascript files with Sprockets
 });
 
 gulp.task('watch', function(){
-    gulp.watch( defstyles_srcglb, ['styles'] );
-    gulp.watch( defscripts_srcglb, ['scripts'] );
+    gulp.watch( [defstyles_srcglb], ['styles'] );
+    gulp.watch( [defscripts_srcglb], ['scripts'] );
 });
