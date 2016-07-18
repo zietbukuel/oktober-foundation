@@ -1,25 +1,29 @@
 {
-    "private": true,
-    "name": "oktober-foundation",
-    "version": "1.0.0",
-    "description": "Starter template for building Zurb Foundation 6 themed October CMS sites.",
-    "author": "Juan Timana <sietbukuel@gmail.com>",
-    "license": "MIT",
-    "engines": {
-        "node": ">=0.12.0"
-    },
-    "main": "gulpfile.js",
-    "devDependencies": {
-        "bower": "^1.7.2",
-        "gulp": "^3.9.0",
-        "gulp-autoprefixer": "^3.1.0",
-        "gulp-if": "^2.0.0",
-        "gulp-include": "^2.1.0",
-        "gulp-minify-css": "^1.2.3",
-        "gulp-rename": "^1.2.2",
-        "gulp-sass": "^2.1.1",
-        "gulp-sourcemaps": "^1.6.0",
-        "gulp-uglify": "^1.5.1",
-        "yargs": "^3.32.0"
-    }
+  "private": true,
+  "name": "oktober-foundation",
+  "version": "1.0.0",
+  "description": "Starter template for building Zurb Foundation 6 themed October CMS sites.",
+  "author": "Juan Timana <sietbukuel@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "bower": "^1.7.2",
+    "del": "^2.2.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^2.0.11",
+    "gulp-if": "^2.0.0",
+    "gulp-include": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "pump": "^1.0.1",
+    "yargs": "^3.32.0"
+  }
 }

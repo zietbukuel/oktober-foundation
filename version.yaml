@@ -1,3 +1,9 @@
+1.0.3:
+    - Using gulp-clean-css instead of gulp-minify-css.
+    - Removing .bowerrc and using default path (bower_components) because installing from the backend does not include this file and compilation of assets will fail.
+    - Using pump in gulpfile.js for better error handling/display.
+    - Now the JS compilation uses Babel (es2015 preset) to avoid Unexpected character errors.
+    - New "gulp clean" command to delete old CSS and JS files. This command will delete the entire assets/js and assets/css folders.
 1.0.2:
     - Fixed gulp watch.
 1.0.1:
