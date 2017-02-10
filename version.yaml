@@ -1,3 +1,5 @@
+1.0.4:
+    - Updating packages and README.
 1.0.3:
     - Using gulp-clean-css instead of gulp-minify-css.
     - Removing .bowerrc and using default path (bower_components) because installing from the backend does not include this file and compilation of assets will fail.
