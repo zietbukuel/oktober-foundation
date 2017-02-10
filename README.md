@@ -21,9 +21,13 @@ php artisan theme:use oktober-foundation
 To be able to use Font Awesome we need to make a small change in our `.htaccess` file.
 
 Look for:
+
 `RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources)/.*`
+
 And change it to:
+
 `RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources|bower_components)/.*`
+
 As you can see, we just added "bower_components" after "resources". This should allow us to access any asset inside the "bower_components" folder.
 
 ## One-time Development Environment Setup
