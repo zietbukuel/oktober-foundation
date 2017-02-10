@@ -18,6 +18,13 @@ or with the following command-line instructions inside *project root*:
 php artisan theme:install zietbukuel.oktober-foundation
 php artisan theme:use oktober-foundation
 ```
+To be able to use Font Awesome we need to make a small change in our `.htaccess` file.
+
+Look for:
+`RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources)/.*`
+And change it to:
+`RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources|bower_components)/.*`
+As you can see, we just added "bower_components" after "resources". This should allow us to access any asset inside the "bower_components" folder.
 
 ## One-time Development Environment Setup
 Install [NodeJS and Node Package Manager](https://nodejs.org/en/) globally.
@@ -41,9 +48,9 @@ gulp --production
 
 ## Gulp commands
 
-* `gulp styles` - Compiles the SCSS source code.
-* `gulp scripts` - Compiles the Javascript source code.
-* `gulp clean` - Removes the `assets/css` and `assets/js` folders.
+- `gulp styles` - Compiles the SCSS source code.
+- `gulp scripts` - Compiles the Javascript source code.
+- `gulp clean` - Removes the `assets/css` and `assets/js` folders.
 
 ## Customizing Foundation
 Global Foundation styling parameters should be modified in
@@ -53,5 +60,4 @@ Comment out unwanted styles and scripts for leaner and faster Foundation custom 
 [assets/es6/foundation.js](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/es6/foundation.js)
 
 ## TODO
-* Include some demo code.
-* Feature to optimize images.
+- Feature to optimize images.

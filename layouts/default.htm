@@ -1,0 +1,45 @@
+description = "Default layout"
+==
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Oktober Foundation - {{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="OctoberCMS">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        <link rel="icon" type="image/png" href="{{ 'assets/images/october.png'|theme }}">
+        <link href="{{ 'assets/css/app.css'|theme }}" rel="stylesheet">
+        {% styles %}
+    </head>
+    <body>
+        <div class="off-canvas-wrapper">
+            <div data-off-canvas-wrapper class="off-canvas-wrapper-inner">
+                <!-- Header -->
+                <header id="layout-header">
+                    {% partial 'site/header' %}
+                </header>
+
+                <!-- Content -->
+                <section id="layout-content">
+                    {% page %}
+                </section>
+
+                <!-- Footer -->
+                <footer id="layout-footer">
+                    {% partial 'site/footer' %}
+                </footer>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script src="{{ 'assets/js/libraries.js'|theme }}"></script>
+        <script src="{{ 'assets/js/foundation.js'|theme }}"></script>
+        <script src="{{ 'assets/js/app.js'|theme }}"></script>
+        {% framework extras %}
+        {% scripts %}
+
+    </body>
+</html>

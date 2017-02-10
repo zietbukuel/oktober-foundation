@@ -1,0 +1,37 @@
+==
+<!-- Nav -->
+<div data-responsive-toggle="widemenu" data-hide-for="large" class="title-bar">
+    <div class="title-bar-left">
+    <button type="button" data-open="offCanvas" class="menu-icon"></button>
+    <span class="title-bar-title">
+        <a href="/"><img src="{{ 'assets/images/october.png'|theme }}" class="mobile-logo"></a>
+    </span>
+    </div>
+</div>
+<div id="offCanvas" data-off-canvas class="off-canvas position-left">
+    <div class="offcanvas-logo"><a href="/"><img src="{{ 'assets/images/october.png'|theme }}"></a></div>
+    <button aria-label="Close menu" type="button" data-close class="close-button">
+    <span aria-hidden="true">&times;</span>
+    </button>
+    <ul id="mobile-menu" data-drilldown class="vertical menu">
+        <li class="{% if this.page.id == 'home' %}active{% endif %}"><a href="{{ 'home'|page }}">Basic concepts</a></li>
+        <li class="{% if this.page.id == 'ajax' %}active{% endif %}"><a href="{{ 'ajax'|page }}">AJAX framework</a></li>
+        <li class="{% if this.page.id == 'plugins' %}active{% endif %}"><a href="{{ 'plugins'|page }}">Plugin components</a></li>
+    </ul>
+</div>
+<div id="widemenu" class="top-bar">
+    <header class="column row">
+    <div class="small-12">
+        <div class="top-bar-title">
+        <div class="logo"><a href="/"><img src="{{ 'assets/images/october.png'|theme }}"></a></div>
+        </div>
+        <div class="top-bar-left">
+            <ul id="main-menu" data-dropdown-menu class="dropdown menu">
+                <li class="{% if this.page.id == 'home' %}active{% endif %}"><a href="{{ 'home'|page }}">Basic concepts</a></li>
+                <li class="{% if this.page.id == 'ajax' %}active{% endif %}"><a href="{{ 'ajax'|page }}">AJAX framework</a></li>
+                <li class="{% if this.page.id == 'plugins' %}active{% endif %}"><a href="{{ 'plugins'|page }}">Plugin components</a></li>
+            </ul>
+        </div>
+    </div>
+    </header>
+</div>

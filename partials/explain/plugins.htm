@@ -1,0 +1,17 @@
+<hr />
+
+<p class="lead">
+    <i class="fa fa-files-o" aria-hidden="true"></i> &nbsp; The HTML markup for this example:
+</p>
+<code>
+{% filter escape %}
+{{ "{% component 'demoTodo' %}" }}
+{% endfilter %}</code>
+
+<hr />
+
+<p class="lead">
+    <i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; Wait, only one line is needed?
+</p>
+<p><em>Yes!</em> unlike the <a href="{{ 'ajax'|page }}">AJAX example</a>, components are simple building blocks that can be used with a small amount of code.</p>
+<p>The <code>demoTodo</code> component used here is provided by the plugin called <strong>October\Demo</strong>, you can find it in the <code>plugins/october/demo</code> folder.</p>
