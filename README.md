@@ -41,7 +41,7 @@ gulp --production
 
 ## Gulp commands
 
-* `gulp styles` - Compiles the SASS source code.
+* `gulp styles` - Compiles the SCSS source code.
 * `gulp scripts` - Compiles the Javascript source code.
 * `gulp clean` - Removes the `assets/css` and `assets/js` folders.
 
@@ -50,7 +50,7 @@ Global Foundation styling parameters should be modified in
 [assets/scss/_settings.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/scss/_settings.scss)
 Comment out unwanted styles and scripts for leaner and faster Foundation custom build:
 [assets/scss/_foundation6.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/scss/_foundation6.scss)
-[assets/es6/app.js](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/es6/app.js)
+[assets/es6/foundation.js](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/es6/foundation.js)
 
 ## TODO
 * Include some demo code.
