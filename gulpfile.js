@@ -1,100 +1,121 @@
 /*
  * Build project assets for development and production
  *
- * Installation (Node Package Manager):
- * > npm install --global gulp bower
- * > npm install && bower install
+ * Installation:
+ * > npm install --global gulp yarn
+ * > yarn install
  *
- * Usage (GulpJS):
+ * Usage:
  * > gulp styles  [--production][--src=<filepath/filename.scss> [--dest=<path/dirname>]]
  * > gulp scripts [--production][--src=<filepath/filename.js> [--dest=<path/dirname>]]
+ * > gulp [--production]
+ * > gulp watch
  */
 'use strict';
-var // defaults
-    defassets_srcdir = "assets/",
-    defvendor_srcdir = "bower_components/",
-    defstyles_srcdir = defassets_srcdir+"scss/",
-    defstyles_srcglb = defstyles_srcdir+"*.scss",
-    defscripts_srcglb = defassets_srcdir+"es6/*.js",
-    defassets_destdir = defassets_srcdir,
-    defstyles_destdir = defassets_destdir+"css/",
-    defscripts_destdir = defassets_destdir+"js/";
-    
-var // global modules
+
+// Polyfill to avoid having nasty error messages
+require('es6-promise').polyfill();
+
+// defaults
+var assets_dir = "assets/",
+    src_dir = "src/",
+    node_dir = "node_modules/",
+    scss_dir = src_dir + "scss/",
+    scss_src = scss_dir + "*.scss",
+    js_dir = src_dir + "js/",
+    js_src = js_dir + "*.js",
+    img_dir = src_dir + "images/",
+    img_src = img_dir + "*.+(png|jpg|gif)",
+    assets_css_dir = assets_dir + "css/",
+    assets_js_dir = assets_dir + "js/",
+    assets_img_dir = assets_dir + "images/";
+
+// global modules
+var gulp = require('gulp'),
+    pump = require('pump'),
     args = require('yargs').argv,
-    gulp = require('gulp'),
-    gulpif = require('gulp-if'),
-    rename = require('gulp-rename'),
-    pump = require('pump');
+    $ = require('gulp-load-plugins')();
 
-gulp.task('default', ['styles', 'scripts']);
+// Default task
+gulp.task('default', ['styles', 'scripts', 'imagemin']);
 
-gulp.task('styles', function(cb) {
-    var sourcemaps = require('gulp-sourcemaps'),
-        sass = require('gulp-sass'),
-        autoprefixer = require('gulp-autoprefixer'),
-        cleancss = require('gulp-clean-css'),
-        srcfiles = args.src || defstyles_srcglb,
-        destdir = args.dest || defstyles_destdir;
-
-    pump([
-        gulp.src( srcfiles ),
-        sourcemaps.init(),
-        sass( {
-            errLogToConsole: true,
-            outputStyle: 'nested',
-            //sourceComments: true,
-            sourceMapEmbed: false,
-            includePaths: [
-            defvendor_srcdir+"foundation-sites/scss",
-            defvendor_srcdir+"font-awesome/scss",
-            defvendor_srcdir+"motion-ui/src"
-            ]
-        } ),
-        autoprefixer( {
-            cascade: false,
-            //map: true,
-            browsers: ["last 2 versions", "iOS >= 7"]
-        } ),
-        sourcemaps.write( "./", {
-            includeContent: false,
-            sourceRoot: "../scss" 
-        } ),
-        gulp.dest( destdir ),
-        gulpif(args.production, rename( { suffix: ".min" } ) ),
-        gulpif(args.production, cleancss() ),
-        gulpif(args.production, gulp.dest( destdir ) )
-    ], cb);
-});
-
-gulp.task('scripts', function(cb) {
-    var include = require('gulp-include'), // extend Javascript files with Sprockets syntax
-        babel = require('gulp-babel'),
-        uglify = require('gulp-uglify'),
-        srcfiles = args.src || defscripts_srcglb,
-        destdir = args.dest || defscripts_destdir;
-
-    pump([
-        gulp.src( srcfiles ),
-        include(),
-        gulp.dest( destdir ),
-        gulpif(args.production, rename( function(fullname){ fullname.extname = ".min.js"; } ) ),
-        gulpif(args.production, babel( { presets: ['es2015'] } ) ),
-        gulpif(args.production, uglify( { preserveComments: "license" } ) ),
-        gulpif(args.production, gulp.dest( destdir ) )
-    ], cb);
-});
-
+// Cleans the assets folder: gulp clean
 gulp.task('clean', function() {
     var del = require('del');
-    
-    return del([
-        'assets/css',
-        'assets/js'
-    ]);
+    return del(assets_dir + '*');
 });
 
+// Compiles SASS code: gulp styles
+gulp.task('styles', function(cb) {
+    var sass = require('node-sass'),
+        srcfiles = args.src || scss_src,
+        destdir = args.dest || assets_css_dir;
+
+    sass.render({
+        file: scss_dir + 'style.scss',
+        outputStyle: args.production ? 'compact' : 'nested'
+      }, function(error, result) {
+        if (error) {
+          console.log('Error compiling sass: ' + error.message);
+        }
+        else {
+          var css = result.css.toString();
+
+          pump([
+            $.file('style.css', css),
+            $.autoprefixer({
+              browsers: ['last 2 versions', 'ie >= 9'],
+              cascade: false
+            }),
+            $.if(!args.production, $.sourcemaps.init()),
+            $.if(args.production, $.cleanCss()),
+            $.if(!args.production, $.sourcemaps.write('./')),
+            gulp.dest(destdir)
+          ], cb);
+        }
+      });
+});
+
+// Compiles Javascript: gulp scripts
+gulp.task('scripts', ['jslint'], function(cb) {
+    var srcfiles = args.src || js_src,
+        destdir = args.dest || assets_js_dir;
+
+    pump([
+        gulp.src(srcfiles),
+        $.include(),
+        $.if(args.production, $.babel({
+          presets: ['es2015']
+        })),
+        $.if(args.production, $.uglify()
+        .on('error', function(e) {
+          console.log(e);
+        })),
+        gulp.dest(destdir),
+    ], cb);
+});
+
+// JS Linting Task: gulp jslint
+gulp.task('jslint', function(cb) {
+  pump([
+    gulp.src(js_src),
+    $.jshint(),
+    $.jshint.reporter('default')
+  ], cb);
+});
+
+// Image Optimization: gulp imagemin
+gulp.task('imagemin', function(cb) {
+   pump([
+     gulp.src(img_src),
+     $.changed(img_src),
+     $.imagemin(),
+     gulp.dest(assets_img_dir)
+   ], cb);
+});
+
+// Watch for code modifications: gulp watch
 gulp.task('watch', function() {
-    gulp.watch( [defstyles_srcglb], ['styles'] );
-    gulp.watch( [defscripts_srcglb], ['scripts'] );
+  gulp.watch([scss_src], ['styles']);
+  gulp.watch([js_src], ['scripts']);
 });

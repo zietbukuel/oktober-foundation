@@ -1,13 +1,11 @@
 # Oktober Foundation
 Starter development template for building [Zurb Foundation 6](http://foundation.zurb.com/sites/docs/) themed [October CMS](//octobercms.com/) sites.
 
-This theme was initially based on [f5fresh](https://github.com/Eoler/oc-f5fresh-theme), the main reason I made this theme was because f5fresh is based on Foundation 5 and I needed Foundation 6 (and waiting was not an option).
-
 Includes:
 - Latest Foundation Sites 6 [source from official repository](https://github.com/zurb/foundation-sites)
 - Latest FontAwesome Icons
 - Motion UI
-- Gulp-based build system for development and production
+- Yarn and Gulp build system for development and production
 
 
 ## Installation
@@ -26,42 +24,41 @@ Look for:
 
 And change it to:
 
-`RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources|bower_components)/.*`
+`RewriteCond %{REQUEST_FILENAME} !/themes/.*/(assets|resources|node_modules)/.*`
 
-As you can see, we just added "bower_components" after "resources". This should allow us to access any asset inside the "bower_components" folder.
+As you can see, we just added "node_modules" after "resources". This should allow us to access any asset inside the "node_modules" folder.
 
 ## One-time Development Environment Setup
 Install [NodeJS and Node Package Manager](https://nodejs.org/en/) globally.
 Run the following command-line instructions inside *theme root*:
 ```
-npm install -g gulp bower
-npm install && bower install
+npm install -g gulp yarn
+yarn install
 ```
 
 ## Using and Editing
-Custom styles should be in [assets/scss/app.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/scss/app.scss),
-scripts in [assets/es6/app.js](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/es6/app.js).
+Custom styles should be in [src/scss/style.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/src/scss/style.scss),
+scripts in [src/js/theme.js](https://github.com/zietbukuel/oktober-foundation/blob/master/src/js/theme.js).
 Development changes can be automated with command-line instruction inside *theme root*:
 ```
-gulp watch
+yarn run watch
 ```
-Build optimized, minified, autoprefixed assets with command-line instruction inside *theme root*:
+Build optimized, minified, auto-prefixed assets with command-line instruction inside *theme root*:
 ```
-gulp --production
+yarn run build -- --production
 ```
 
-## Gulp commands
+## Yarn commands
 
-- `gulp styles` - Compiles the SCSS source code.
-- `gulp scripts` - Compiles the Javascript source code.
-- `gulp clean` - Removes the `assets/css` and `assets/js` folders.
+- `yarn run build [-- --production]` - Compiles the SCSS and Javascript source code.
+- `yarn run build-styles [-- --production]` - Compiles the SCSS source code.
+- `yarn run build-scripts [-- --production]` - Compiles the Javascript source code.
+- `yarn run clean` - Removes everything inside `assets/`.
+- `yarn run watch` - Monitors changes inside `src/*`.
 
 ## Customizing Foundation
 Global Foundation styling parameters should be modified in
-[assets/scss/_settings.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/scss/_settings.scss)
+[src/scss/_settings.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/src/scss/_settings.scss)
 Comment out unwanted styles and scripts for leaner and faster Foundation custom build:
-[assets/scss/_foundation6.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/scss/_foundation6.scss)
-[assets/es6/foundation.js](https://github.com/zietbukuel/oktober-foundation/blob/master/assets/es6/foundation.js)
-
-## TODO
-- Feature to optimize images.
+[src/scss/_foundation6.scss](https://github.com/zietbukuel/oktober-foundation/blob/master/src/scss/_foundation6.scss)
+[src/js/foundation.js](https://github.com/zietbukuel/oktober-foundation/blob/master/src/js/foundation.js)
